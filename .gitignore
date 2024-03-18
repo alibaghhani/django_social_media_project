@@ -12,3 +12,5 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.idea/django_social_media_project.iml
+.idea/misc.xml
