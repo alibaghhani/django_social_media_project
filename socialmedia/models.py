@@ -22,4 +22,22 @@ class Post(models.Model):
 class Like(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='likes')
+    user = models.ForeignKey(User,
+                             on_delete=models.CASCADE,
+                             related_name='likes')
+    post =  models.ForeignKey(Post,
+                              on_delete=models.CASCADE,
+                              related_name='post_like',
+                              related_query_name='Post_like')
+
+class Comment(models.Model):
+    content = models.CharField(max_length=250)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User,
+                             on_delete=models.CASCADE,
+                             related_name='comments')
+    Post =  models.ForeignKey(Post,
+                              on_delete=models.CASCADE,
+                              related_name='post_comment',
+                              related_query_name='Post_comment')
