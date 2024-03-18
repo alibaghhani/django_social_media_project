@@ -13,10 +13,10 @@ class Follow(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=250)
     content = models.CharField(max_length=250)
-    image = models.ImageField(max_length=250)
+    image = models.ImageField(max_length=250,upload_to='media',blank=True,null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='posts')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
 
     def __str__(self):
         return self.title
