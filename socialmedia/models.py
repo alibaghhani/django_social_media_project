@@ -18,6 +18,8 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='posts')
 
+    def __str__(self):
+        return self.title
 
 class Like(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -37,7 +39,10 @@ class Comment(models.Model):
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE,
                              related_name='comments')
-    Post =  models.ForeignKey(Post,
+    post =  models.ForeignKey(Post,
                               on_delete=models.CASCADE,
                               related_name='post_comment',
                               related_query_name='Post_comment')
+
+    def __str__(self):
+        return f'commented by {self.post.user.username}'
